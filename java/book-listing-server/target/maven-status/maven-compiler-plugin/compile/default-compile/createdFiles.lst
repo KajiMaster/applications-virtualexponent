@@ -1,0 +1,7 @@
+com/booklisting/configure/WebClientConfig.class
+com/booklisting/controller/BookController.class
+com/booklisting/BookListingApplication.class
+com/booklisting/service/BookService.class
+com/booklisting/dto/OpenLibraryBookDTO.class
+com/booklisting/model/Book.class
+com/booklisting/dto/OpenLibraryResponseDTO.class

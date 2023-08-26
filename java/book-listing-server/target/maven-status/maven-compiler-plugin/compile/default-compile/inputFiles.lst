@@ -1,0 +1,7 @@
+/home/wux/applications-virtualexponent/java/book-listing-server/src/main/java/com/booklisting/dto/OpenLibraryResponseDTO.java
+/home/wux/applications-virtualexponent/java/book-listing-server/src/main/java/com/booklisting/model/Book.java
+/home/wux/applications-virtualexponent/java/book-listing-server/src/main/java/com/booklisting/configure/WebClientConfig.java
+/home/wux/applications-virtualexponent/java/book-listing-server/src/main/java/com/booklisting/BookListingApplication.java
+/home/wux/applications-virtualexponent/java/book-listing-server/src/main/java/com/booklisting/controller/BookController.java
+/home/wux/applications-virtualexponent/java/book-listing-server/src/main/java/com/booklisting/dto/OpenLibraryBookDTO.java
+/home/wux/applications-virtualexponent/java/book-listing-server/src/main/java/com/booklisting/service/BookService.java
