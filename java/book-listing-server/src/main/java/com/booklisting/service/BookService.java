@@ -39,6 +39,10 @@ public class BookService {
         logger.info("Searching books with term: {}, sort: {}, page: {}", term, sort, page);  // Logging for debugging
 
         String searchEndpoint = "/search.json";  // This can be changed based on what you want to search (books, authors, etc.)
+        if ("author".equalsIgnoreCase(sort)) {
+            searchEndpoint = "/search/authors.json"; // change to authors if sort is author
+        }
+
         StringBuilder queryParams = new StringBuilder();
         queryParams.append("?q=").append(term);  // Basic search query
 
@@ -63,6 +67,13 @@ public class BookService {
         
             books = response.getBooks().stream()
                 .map(Book::new)
+                .sorted((book1, book2) -> {
+                    if ("author".equalsIgnoreCase(sort)) {
+                        return book1.getAuthor().compareTo(book2.getAuthor());
+                    } else {  // Default sorting is by title
+                        return book1.getTitle().compareTo(book2.getTitle());
+                    }
+                })
                 .collect(Collectors.toList());
         
         } catch (WebClientResponseException e) {

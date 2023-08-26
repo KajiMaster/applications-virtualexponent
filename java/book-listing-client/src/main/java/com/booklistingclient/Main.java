@@ -3,6 +3,7 @@ package com.booklistingclient;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -58,12 +59,18 @@ public class Main {
         
         if (searchTerm != null) {
             List<Book> books = callServerSearchAPI(host, searchTerm, sortField, page);
-            displayBooks(books);
+            displayBooks(books, sortField);
         }
     }
 
     private static void printHelp() {
-        System.out.println("Usage help: ...");  // add more details as needed
+        System.out.println("Usage help:\n"
+        + "-s, --search <term>      : Search for a book by term\n"
+        + "-p <page>                : Specify the page number\n"
+        + "-h, --host <hostname>    : Specify the server hostname\n"
+        + "--help                   : Display this help message\n"
+        + "\n"
+        + "Example usage: ~/applications-virtualexponent/java/book-listing-client/target/book-listing-client-1.0-SNAPSHOT.jar -s \"harry potter\" -p 1");
     }
 
     private static List<Book> callServerSearchAPI(String host, String term, String sort, Integer page) {
@@ -105,7 +112,17 @@ public class Main {
         return books;
     }
 
-    private static void displayBooks(List<Book> books) {
+    private static void displayBooks(List<Book> books, String sortField) {
+        // Sort the list of books
+        Collections.sort(books, (book1, book2) -> {
+            if ("author".equalsIgnoreCase(sortField)) {
+                return book1.getAuthor().compareTo(book2.getAuthor());
+            } else {  // Default sorting is by title
+                return book1.getTitle().compareTo(book2.getTitle());
+            }
+        });
+
+        // Display the books
         for(Book book : books) {
             System.out.println(book.getTitle() + " by " + book.getAuthor() + " (CoverUrl: " + book.getImageUrl() + ")");  // Modify as per your Book class structure
         }
